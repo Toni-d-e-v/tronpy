@@ -258,7 +258,10 @@ class AsyncTransactionBuilder(object):
         """Set fee_limit of the transaction, in `SUN`."""
         self._raw_data["fee_limit"] = value
         return self
-
+    def value(self, value: int) -> "AsyncTransactionBuilder":
+        """Set fee_limit of the transaction, in `SUN`."""
+        self._raw_data["call_value"] = value
+        return self
     async def build(self, options=None, **kwargs) -> AsyncTransaction:
         """Build the transaction."""
         ref_block_id = await self._client.get_latest_solid_block_id()
